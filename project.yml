@@ -1,0 +1,40 @@
+name: PriceTicker
+options:
+  deploymentTarget:
+    macOS: "12.0"
+  bundleIdPrefix: com.priceticker
+  createIntermediateGroups: true
+  xcodeVersion: "14"
+
+targets:
+  PriceTicker:
+    type: application
+    platform: macOS
+    sources:
+      - path: PriceTicker
+        excludes:
+          - "**/.DS_Store"
+    info:
+      path: PriceTicker/Info.plist
+      properties:
+        LSUIElement: true
+        NSPrincipalClass: NSApplication
+        NSHumanReadableCopyright: ""
+    entitlements:
+      path: PriceTicker/PriceTicker.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
+        com.apple.security.network.client: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.priceticker.app
+        SWIFT_VERSION: "5.7"
+        MACOSX_DEPLOYMENT_TARGET: "12.0"
+        CODE_SIGN_STYLE: Automatic
+        INFOPLIST_FILE: PriceTicker/Info.plist
+        CODE_SIGN_ENTITLEMENTS: PriceTicker/PriceTicker.entitlements
+        ENABLE_HARDENED_RUNTIME: YES
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SYMROOT: $(SRCROOT)/build
+        CONFIGURATION_BUILD_DIR: $(SRCROOT)/build/$(CONFIGURATION)
